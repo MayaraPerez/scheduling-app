@@ -1,0 +1,13 @@
+# frontend
+frontend/node_modules
+
+# backend
+backend/bin
+
+# env
+.env
+backend/.env
+frontend/.env
+
+# macOS
+.DS_Store
