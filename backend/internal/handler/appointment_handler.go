@@ -6,6 +6,7 @@ import (
 	"backend/internal/repository"
 	"encoding/json"
 	"fmt"
+	"log"
 	"net/http"
 	"strconv"
 )
@@ -62,15 +63,22 @@ func GetAppointment(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	name := r.URL.Query().Get("name")
-	if name == "" {
-		http.Error(w, "Missing 'name' query parameter", http.StatusBadRequest)
+	idStr := r.URL.Query().Get("id")
+	if idStr == "" {
+		http.Error(w, "Missing 'id' query parameter", http.StatusBadRequest)
+		return
+	}
+
+	id, err := strconv.Atoi(idStr)
+	if err != nil {
+		http.Error(w, "Invalid 'id' query parameter", http.StatusBadRequest)
 		return
 	}
 
 	db := config.ConnectDB()
 
-	appointment, err := repository.GetAppointmentsByName(db, name)
+	appointment, err := repository.GetAppointmentsById(db, id)
+	fmt.Println("Queried appointment:", appointment)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
@@ -120,6 +128,7 @@ func UpdateAppointment(w http.ResponseWriter, r *http.Request) {
 	db := config.ConnectDB()
 
 	err = repository.UpdateAppointmentStatus(db, id, body.Status)
+
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
@@ -140,7 +149,7 @@ func CancelAppointment(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusOK)
 		return
 	}
-	
+
 	if r.Method != http.MethodDelete {
 		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
 		return
@@ -153,7 +162,6 @@ func CancelAppointment(w http.ResponseWriter, r *http.Request) {
 	}
 
 	id, err := strconv.Atoi(idStr)
-	fmt.Println("ID PARAM:", id)
 	if err != nil {
 		http.Error(w, "Invalid 'id' query parameter", http.StatusBadRequest)
 		return
@@ -163,11 +171,13 @@ func CancelAppointment(w http.ResponseWriter, r *http.Request) {
 
 	err = repository.CancelAppointment(db, id)
 	if err != nil {
+		log.Println("Erro ao cancelar:", err)
+
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
 
-	fmt.Println("Appointment deleted:", id)
+	log.Printf("Appointment %d canceled successfully", id)
 
 	w.WriteHeader(http.StatusOK)
 	fmt.Fprintln(w, "Appointment canceled successfully")

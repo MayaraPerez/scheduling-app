@@ -11,7 +11,7 @@ import (
 func main() {
 
 	http.HandleFunc("/appointments", handler.CreateAppointment)
-	http.HandleFunc("/appointments/search", handler.GetAppointment)
+	http.HandleFunc("/appointments/remind", handler.GetAppointment)
 	http.HandleFunc("/appointments/update", handler.UpdateAppointment)
 	http.HandleFunc("/appointments/cancel", handler.CancelAppointment)
 

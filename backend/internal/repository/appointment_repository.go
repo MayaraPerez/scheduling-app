@@ -3,6 +3,7 @@ package repository
 import (
 	"backend/internal/model"
 	"database/sql"
+	"fmt"
 )
 
 func InsertAppointment(db *sql.DB, a model.Appointment) error {
@@ -15,40 +16,24 @@ func InsertAppointment(db *sql.DB, a model.Appointment) error {
 	return err
 }
 
-func GetAppointmentsByName(db *sql.DB, name string) ([]model.Appointment, error) {
-	query := `
-	SELECT id, client_name, service, date, time, status
-	FROM appointments
-	WHERE client_name = ?
-	`
+func GetAppointmentsById(db *sql.DB, id int) (model.Appointment, error) {
+	rows := db.QueryRow(`
+	SELECT * FROM appointments WHERE id = ?
+	`, id)
 
-	rows, err := db.Query(query, name)
-	if err != nil {
-		return nil, err
-	}
-	defer rows.Close()
+	var a model.Appointment
 
-	var appointments []model.Appointment
+	err := rows.Scan(
+		&a.ID,
+		&a.ClientName,
+		&a.Service,
+		&a.Date,
+		&a.Time,
+		&a.Status,
+	)
 
-	for rows.Next() {
-		var a model.Appointment
+	return a, err
 
-		err := rows.Scan(
-			&a.ID,
-			&a.ClientName,
-			&a.Service,
-			&a.Date,
-			&a.Time,
-			&a.Status,
-		)
-		if err != nil {
-			return nil, err
-		}
-
-		appointments = append(appointments, a)
-	}
-
-	return appointments, nil
 }
 
 func UpdateAppointmentStatus(db *sql.DB, id int, status string) error {
@@ -62,7 +47,19 @@ func UpdateAppointmentStatus(db *sql.DB, id int, status string) error {
 }
 
 func CancelAppointment(db *sql.DB, id int) error {
-	query := `DELETE FROM appointments WHERE id = ?`
-	_, err := db.Exec(query, id)
-	return err
+	result, err := db.Exec(`DELETE FROM appointments WHERE id = ?`, id)
+	if err != nil {
+		return err
+	}
+
+	rowsAffected, err := result.RowsAffected()
+	if err != nil {
+		return err
+	}
+	fmt.Println("Rows affected:", rowsAffected)
+
+	if rowsAffected == 0 {
+		return fmt.Errorf("no appointment found with id %d", id)
+	}
+	return nil
 }
