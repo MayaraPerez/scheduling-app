@@ -1,0 +1,51 @@
+.banner {
+  background-image: url("https://images.unsplash.com/photo-1560066984-138dadb4c035?q=80&w=1974&auto=format&fit=crop");
+  background-size: cover;
+  background-position: center;
+  height: 800px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  filter: grayscale(100%);
+  transition: all 0.5s ease;
+}
+
+/* camada escura */
+.banner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background: rgba(0, 0, 0, 0.55);
+}
+
+/* conteúdo acima do overlay */
+.banner-content, .appointment-details {
+  position: relative;
+  z-index: 2;
+  color: white;
+  text-align: center;
+}
+
+.banner-content h1 {
+  font-size: 3rem;
+  margin-bottom: 10px;
+}
+.banner-content p {
+  font-size: 1.1rem;
+  opacity: 0.9;
+}
+
+.banner-button {
+  background: rgba(0, 0, 0, 0.55);
+  border: 1px solid white;
+  padding: 18px 0;
+}
+
+.banner-button:hover {
+  background-color: #f08fb2;
+  box-shadow: 0 0 0 4px rgba(212, 106, 146, 0.15);
+}
+
+
