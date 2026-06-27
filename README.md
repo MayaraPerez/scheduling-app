@@ -13,12 +13,12 @@ A aplicação permite realizar o gerenciamento completo de agendamentos de um sa
 
 Atualmente é possível:
 
-✅ Criar um novo agendamento.
-✅ Envio de e-email usando Resend
-✅ Consultar um agendamento pelo ID.
-✅ Atualizar o status de um agendamento (Pendente, Confirmado ou Cancelado).
-✅ Cancelar um agendamento pelo ID.
-✅ Exibir os detalhes do agendamento na interface.
+✅ - Criar um novo agendamento.
+✅ - Envio de e-email usando Resend
+✅ - Consultar um agendamento pelo ID.
+✅ - Atualizar o status de um agendamento (Pendente, Confirmado ou Cancelado).
+✅ - Cancelar um agendamento pelo ID.
+✅ - Exibir os detalhes do agendamento na interface.
 
 ---
 
@@ -38,14 +38,14 @@ O back-end foi desenvolvido em Go seguindo uma arquitetura em camadas.
 ```
 Foram implementados:
 
-Endpoints REST.
-Validação dos métodos HTTP.
-Validação de parâmetros recebidos.
-Comunicação com banco MySQL.
-Operações CRUD.
-Tratamento de erros.
-Respostas HTTP adequadas para cada situação.
-Integração com serviços externos.
+- Endpoints REST.
+- Validação dos métodos HTTP.
+- Validação de parâmetros recebidos.
+- Comunicação com banco MySQL.
+- Operações CRUD.
+- Tratamento de erros.
+- Respostas HTTP adequadas para cada situação.
+- Integração com serviços externos.
 
 Estrutura atual:
 
