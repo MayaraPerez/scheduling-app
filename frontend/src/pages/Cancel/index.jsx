@@ -1,4 +1,4 @@
-import CancelAppointment from "../../components/CancelForm";
+import CancelAppointment from "../../components/form/CancelForm";
 
 function Cancel() {
   return (

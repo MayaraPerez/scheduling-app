@@ -1,5 +1,5 @@
-import Banner from "../../components/banner";
-import NavBar from "../../components/navbar";
+import Banner from "../../components/layout/banner";
+import NavBar from "../../components/layout/navbar";
 
 function Home() {
   return (

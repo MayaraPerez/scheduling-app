@@ -1,9 +1,9 @@
-import UpdatedForm from "../../components/UpdatedForm";
+import UpdateAppointment from "../../components/form/UpdatedForm";
 
 function Reschedule() {
   return (
     <>
-      <UpdatedForm />
+      <UpdateAppointment />
     </>
   );
 }

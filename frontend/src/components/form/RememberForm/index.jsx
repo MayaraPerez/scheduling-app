@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function RememberForm() {
+function RememberAppointment() {
   const [clientID, setClientID] = useState("");
   const [appointment, setAppointment] = useState(null);
 
@@ -68,4 +68,4 @@ function RememberForm() {
   );
 }
 
-export default RememberForm;
+export default RememberAppointment;

@@ -1,10 +1,10 @@
-import Remember from "../../components/RememberForm";
+import RememberAppointment from "../../components/form/RememberForm";
 
-function keepInMind() {
+function Remember() {
     return (
       <>
-        <Remember />
+        <RememberAppointment />
       </>
     );
   }
-  export default keepInMind;
+  export default Remember;

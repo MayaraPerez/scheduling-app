@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { toast } from "react-toastify";
 
-function UpdatedForm() {
+function UpdateAppointment() {
   const [clientID, setClientID] = useState("");
   const [selectedStatus, setSelectedStatus] = useState("");
 
@@ -64,4 +64,4 @@ function UpdatedForm() {
     </>
   );
 }
-export default UpdatedForm;
+export default UpdateAppointment;

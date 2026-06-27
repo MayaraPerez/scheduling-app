@@ -1,4 +1,4 @@
-import Appointment from "../../components/AppointmentForm";
+import Appointment from "../../components/form/AppointmentForm";
 
 function Schedule() {
   return (
