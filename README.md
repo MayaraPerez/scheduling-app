@@ -9,35 +9,72 @@ Sistema de agendamento fullstack desenvolvido com:
 
 ## 📚 Objetivo
 
-Este projeto está sendo desenvolvido para fins de estudo e para aprimorar meu conhecimento em:
+A aplicação permite realizar o gerenciamento completo de agendamentos de um salão de beleza por meio de uma API desenvolvida em Go e uma interface em React.
 
-- Desenvolvimento backend com Go
-- APIs REST
-- Operações CRUD
-- Frontend React
-- Integração com banco de dados
-- Comunicação fullstack
-- Arquitetura de software
+Atualmente é possível:
+
+✅ Criar um novo agendamento.
+✅ Envio de e-email usando Resend
+✅ Consultar um agendamento pelo ID.
+✅ Atualizar o status de um agendamento (Pendente, Confirmado ou Cancelado).
+✅ Cancelar um agendamento pelo ID.
+✅ Exibir os detalhes do agendamento na interface.
 
 ---
 
 ## 🚀 Funcionalidades
 
 ### Backend
-- Criar agendamentos
-- Buscar agendamentos
-- Atualizar agendamentos
-- Cancelar agendamentos
-- Integração com MySQL
-- API REST
+O back-end foi desenvolvido em Go seguindo uma arquitetura em camadas.
+
+```
+      Handler
+        ↓
+      Service
+        ↓
+    Repository
+        ↓
+      MySQL
+```
+Foram implementados:
+
+Endpoints REST.
+Validação dos métodos HTTP.
+Validação de parâmetros recebidos.
+Comunicação com banco MySQL.
+Operações CRUD.
+Tratamento de erros.
+Respostas HTTP adequadas para cada situação.
+Integração com serviços externos.
+
+Estrutura atual:
 
 ### Frontend
-- Formulário de agendamento
-- Navegação com React Router
-- Notificações Toast
-- Seletor de datas
-- Interface responsiva
-- Página inicial de salão de beleza
+- Página inicial com banner de navegação.
+- Sistema de rotas utilizando React Router.
+- Formulário para criação de agendamentos.
+- Formulário para atualização de status.
+- Formulário para cancelamento.
+- Formulário para consulta de agendamento.
+- Feedback visual utilizando React Toastify.
+- Componentização da interface.
+- Organização das páginas utilizando React Router.
+
+---
+
+### Banco de Dados
+
+| Campo       | Descrição                    |
+| ----------- | ---------------------------- |
+| id          | Identificador do agendamento |
+| client_name | Nome do cliente              |
+| email       | Email do cliente             |
+| phone       | Telefone do cliente          |
+| service     | Serviço solicitado           |
+| date        | Data do atendimento          |
+| time        | Horário                      |
+| status      | Status do agendamento        |
+
 
 ---
 
@@ -54,11 +91,7 @@ Este projeto está sendo desenvolvido para fins de estudo e para aprimorar meu c
 - Go
 - net/http
 - Driver MySQL
-
-### Banco de Dados
-- MySQL
-
----
+- agendamento utilizando Resend
 
 ## ⚠️ Variáveis ​​de Ambiente
 
