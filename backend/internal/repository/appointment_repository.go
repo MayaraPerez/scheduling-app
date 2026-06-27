@@ -6,14 +6,32 @@ import (
 	"fmt"
 )
 
-func InsertAppointment(db *sql.DB, a model.Appointment) error {
+func InsertAppointment(db *sql.DB, a model.Appointment) (int64, error) {
 	query := `
-	INSERT INTO appointments (client_name, service, date, time, status)
-	VALUES (?, ?, ?, ?, ?)
+	INSERT INTO appointments
+	(client_name, email, phone, service, date, time, status)
+	VALUES (?, ?, ?, ?, ?, ?, ?)
 	`
 
-	_, err := db.Exec(query, a.ClientName, a.Service, a.Date, a.Time, "pendente")
-	return err
+	result, err := db.Exec(
+		query,
+		a.ClientName,
+		a.Email,
+		a.Phone,
+		a.Service,
+		a.Date,
+		a.Time,
+		"pendente",
+	)
+	if err != nil {
+		return 0, err
+	}
+
+	id, err := result.LastInsertId()
+	if err != nil {
+		return 0, err
+	}
+	return id, nil
 }
 
 func GetAppointmentsById(db *sql.DB, id int) (model.Appointment, error) {
@@ -30,6 +48,8 @@ func GetAppointmentsById(db *sql.DB, id int) (model.Appointment, error) {
 		&a.Date,
 		&a.Time,
 		&a.Status,
+		&a.Email,
+		&a.Phone,
 	)
 
 	return a, err

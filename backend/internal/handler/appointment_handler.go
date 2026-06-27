@@ -3,6 +3,7 @@ package handler
 import (
 	"backend/internal/config"
 	"backend/internal/model"
+	"backend/internal/notification"
 	"backend/internal/repository"
 	"encoding/json"
 	"fmt"
@@ -36,10 +37,16 @@ func CreateAppointment(w http.ResponseWriter, r *http.Request) {
 
 	db := config.ConnectDB()
 
-	err = repository.InsertAppointment(db, appointment)
+	id, err := repository.InsertAppointment(db, appointment)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
+	}
+	appointment.ID = int(id)
+
+	err = notification.SendAppointmentNotificationEmail(appointment)
+	if err != nil {
+		log.Println("Error sending notification email:", err)
 	}
 
 	fmt.Println("Appointment received:", appointment)

@@ -6,6 +6,7 @@ import (
 	"net/http"
 
 	"backend/internal/handler"
+	"github.com/joho/godotenv"
 )
 
 func main() {
@@ -14,6 +15,11 @@ func main() {
 	http.HandleFunc("/appointments/remind", handler.GetAppointment)
 	http.HandleFunc("/appointments/update", handler.UpdateAppointment)
 	http.HandleFunc("/appointments/cancel", handler.CancelAppointment)
+
+	err := godotenv.Load()
+	if err != nil {
+		log.Fatal("Error loading .env file")
+	}
 
 	// rota de health check
 	http.HandleFunc("/health", func(w http.ResponseWriter, r *http.Request) {
