@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 function RememberAppointment() {
   const [clientID, setClientID] = useState("");
@@ -18,7 +19,7 @@ function RememberAppointment() {
         }
       );
       const data = await response.json();
-      setAppointment(data[0]);
+      setAppointment(data);
     } catch (error) {
       console.error("Error sending remind:", error);
       return;
@@ -37,33 +38,36 @@ function RememberAppointment() {
             value={clientID}
             onChange={(e) => setClientID(e.target.value)}
           />
+          {!appointment && <button type="submit">Relembre</button>}
 
-          <button type="submit">Relembre</button>
+          {appointment && (
+            <div className="appointment-details">
+              <h3>Detalhes do Agendamento</h3>
+              <p>
+                <strong>ID:</strong> {appointment.id}
+              </p>
+              <p>
+                <strong>Nome do Cliente:</strong> {appointment.client_name}
+              </p>
+              <p>
+                <strong>Serviço:</strong> {appointment.service}
+              </p>
+              <p>
+                <strong>Data:</strong> {appointment.date}
+              </p>
+              <p>
+                <strong>Hora:</strong> {appointment.time}
+              </p>
+              <p>
+                <strong>Status:</strong> {appointment.status}
+              </p>
+              <Link className="link" to={"/"}>
+                <button className="button-details-back">Voltar</button>
+              </Link>
+            </div>
+          )}
         </form>
       </div>
-      {appointment && (
-        <div className="appointment-details">
-          <h3>Detalhes do Agendamento</h3>
-          <p>
-            <strong>ID:</strong> {appointment.id}
-          </p>
-          <p>
-            <strong>Nome do Cliente:</strong> {appointment.client_name}
-          </p>
-          <p>
-            <strong>Serviço:</strong> {appointment.service}
-          </p>
-          <p>
-            <strong>Data:</strong> {appointment.date}
-          </p>
-          <p>
-            <strong>Hora:</strong> {appointment.time}
-          </p>
-          <p>
-            <strong>Status:</strong> {appointment.status}
-          </p>
-        </div>
-      )}
     </>
   );
 }

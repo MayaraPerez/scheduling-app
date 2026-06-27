@@ -28,6 +28,17 @@
   text-align: center;
 }
 
+.appointment-details{
+  color: black;
+  border: 1px solid hsl(338, 76.40%, 75.10%);
+  padding: 20px;
+  border-radius: 15px;
+}
+.button-details-back {
+  width: 50%;
+  margin: 10 auto;
+}
+
 .banner-content h1 {
   font-size: 3rem;
   margin-bottom: 10px;
@@ -44,8 +55,9 @@
 }
 
 .banner-button:hover {
-  background-color: #f08fb2;
+  background-color:hsl(338, 76.40%, 75.10%);
   box-shadow: 0 0 0 4px rgba(212, 106, 146, 0.15);
 }
+
 
 
