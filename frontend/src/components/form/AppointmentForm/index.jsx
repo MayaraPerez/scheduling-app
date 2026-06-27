@@ -8,6 +8,8 @@ function Appointment() {
   const [service, setService] = useState("");
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [selectedTime, setSelectedTime] = useState(new Date());
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -17,16 +19,20 @@ function Appointment() {
       service,
       date: selectedDate.toISOString().split("T")[0] || "",
       time: selectedTime,
+      phone,
+      email,
     };
+    console.log("Appointment Data:", appointmentData);
 
     try {
-      await fetch("http://localhost:8080/appointments", {
+      const request = await fetch("http://localhost:8080/appointments", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(appointmentData),
       });
+      console.log("Request sent:", request);
       ClearFields();
     } catch (error) {
       console.error("Error creating appointment:", error);
@@ -42,6 +48,8 @@ function Appointment() {
     setService("");
     setSelectedDate(null);
     setSelectedTime("");
+    setEmail("");
+    setPhone("");
   }
 
   return (
@@ -50,25 +58,33 @@ function Appointment() {
         <h2>Novo Agendamento</h2>
         <br />
 
-        <label>Nome:</label>
         <input
           type="text"
           value={clientName}
           onChange={(e) => setClientName(e.target.value)}
+          placeholder="Digite seu nome"
+        />
+        <input
+          type="tel"
+          value={phone}
+          onChange={(e) => setPhone(e.target.value)}
+          placeholder="Ex:. (11) 99999-9999"
         />
 
-        <br />
-
-        <label>Serviço:</label>
+        <input
+          type="text"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="Digite seu Email"
+        />
         <input
           type="text"
           value={service}
           onChange={(e) => setService(e.target.value)}
+          placeholder="Digite serviço desejado"
         />
 
         <div>
-          <label>Escolha a data:</label>
-
           <DatePicker
             selected={selectedDate}
             onChange={(date) => setSelectedDate(date)}
