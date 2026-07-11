@@ -13,12 +13,12 @@ A aplicação permite realizar o gerenciamento completo de agendamentos de um sa
 
 Atualmente é possível:
 
-✅ - Criar um novo agendamento.
-✅ - Envio de e-email usando Resend
-✅ - Consultar um agendamento pelo ID.
-✅ - Atualizar o status de um agendamento (Pendente, Confirmado ou Cancelado).
-✅ - Cancelar um agendamento pelo ID.
-✅ - Exibir os detalhes do agendamento na interface.
+- ✅ Criar um novo agendamento.
+- ✅ Envio de e-email usando Resend
+- ✅ Consultar um agendamento pelo ID.
+- ✅ Atualizar o status de um agendamento (Pendente, Confirmado ou Cancelado).
+- ✅ Cancelar um agendamento pelo ID.
+- ✅ Exibir os detalhes do agendamento na interface.
 
 ---
 
