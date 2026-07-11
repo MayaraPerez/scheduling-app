@@ -101,13 +101,11 @@ O arquivo `.env` é ignorado pelo Git por motivos de segurança.
 
 ---
 
-## 📌 Status
+## 🎬 Demo
 
-🚧 Em desenvolvimento / projeto de estudo
+👉 [Assista à demo do projeto](https://drive.google.com/file/d/14ouvkI3VU8dYq7ECLSF_Gk3da4yXRrDV/view?usp=drive_link)
 
-Novos recursos e melhorias estão sendo adicionados continuamente.
-
----
+--
 
 ## ▶️ Executando o projeto
 
