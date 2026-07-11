@@ -78,6 +78,8 @@ Estrutura atual:
 
 ---
 
+[Diagrama](https://lucid.app/lucidchart/446efffe-7190-43fe-88da-7c95fd7c1027/edit?page=0_0&invitationId=inv_b824a16b-b9fa-42e2-8405-8309fca92e56#)
+
 ## 🛠️ Tecnologias
 
 ### Frontend
